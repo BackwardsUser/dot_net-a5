@@ -18,6 +18,8 @@
 
                 public double cost { get; set; }
                 public string Description { get; set; }
+                //hello
+                //hi
 
                 public string Name { get; set; }
 
@@ -71,6 +73,7 @@
                         choke = false;
                         weight = 10;
                     }
+                    //hi
                 }
 
 
