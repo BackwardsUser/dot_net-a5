@@ -12,67 +12,134 @@
         class Classes
         {
             // The 'Product' abstract class
-            public abstract class IVehicle
+            public abstract class Toys
             {
-                public string ModeOfTransport { get; set; } //Air, Water, Land
+                //public string ModeOfTransport { get; set; } //Air, Water, Land
 
-                public double cost {  get; set; }
+                public double cost { get; set; }
                 public string Description { get; set; }
 
-                public string Name {  get; set; }
+                public string Name { get; set; }
 
                 public string Manufacturing_Company { get; set; }
+                public int Year_of_manufacture { get; set; }
 
-                
-
-
-5. Year of manufacture
-6. Minimum age limit
-7. Maximum age limit
-8. Whether they contain parts which could be considered a choking hazard
-9. Weight
-            
+                public int Minimum_age { get; set; }
+                public int Maximum_age_limit { get; set; }
+                public bool choke { get; set; }
 
 
-            // A 'ConcreteProduct' class
-            public class Car : IVehicle
-            {
-                public Car()
+                public int weight { get; set; }
+
+
+
+
+
+                // A 'ConcreteProduct' class
+                public class Cars : Toys
                 {
-                    ModeOfTransport = "Land";
-                }
-            }
-
-
-            // A 'ConcreteProduct' class
-            public class Boat : IVehicle
-            {
-                public Boat()
-                {
-                    ModeOfTransport = "Water";
-                }
-            }
-
-
-            // The 'Creator' class
-            public class Creator
-            {
-                public IVehicle GetVehicle(string type)
-                {
-                    switch (type)
+                    public Cars()
                     {
-                        case "Car":
-                            return new Car();
-                        case "Boat":
-                            return new Boat();
-                        default:
-                            throw new NotSupportedException();
+                        cost = 0;
+                        Description = "";
+                        Name = "";
+                        Manufacturing_Company = "";
+                        Year_of_manufacture = 0;
+                        Minimum_age = 0;
+                        Maximum_age_limit = 10;
+                        choke = false;
+                        weight = 10;
+
+
+
+                    }
+                }
+
+
+                // A 'ConcreteProduct' class
+                public class dollhouses : Toys
+                {
+                    public dollhouses()
+                    {
+                        cost = 0;
+                        Description = "";
+                        Name = "";
+                        Manufacturing_Company = "";
+                        Year_of_manufacture = 0;
+                        Minimum_age = 0;
+                        Maximum_age_limit = 10;
+                        choke = false;
+                        weight = 10;
+                    }
+                }
+
+
+
+                public class stuffed_animals : Toys
+                {
+                    public stuffed_animals()
+                    {
+                        cost = 0;
+                        Description = "";
+                        Name = "";
+                        Manufacturing_Company = "";
+                        Year_of_manufacture = 0;
+                        Minimum_age = 0;
+                        Maximum_age_limit = 10;
+                        choke = false;
+                        weight = 10;
+                    }
+                }
+
+
+                public class rainbow_stackers : Toys
+                {
+                    public rainbow_stackers()
+                    {
+                        cost = 0;
+                        Description = "";
+                        Name = "";
+                        Manufacturing_Company = "";
+                        Year_of_manufacture = 0;
+                        Minimum_age = 0;
+                        Maximum_age_limit = 10;
+                        choke = false;
+                        weight = 10;
+                    }
+                }
+
+
+
+
+
+                // The 'Creator' class
+                public class Creator
+                {
+                    public Toys Gettoy(string type)
+                    {
+                        switch (type)
+                        {
+                            case "Cars":
+                                return new Cars();
+                            case "dollhouses":
+                                return new dollhouses();
+
+                            case "stuffed_animals":
+                                return new stuffed_animals();
+                            case " rainbow_stackers":
+                                return new rainbow_stackers();
+
+
+
+                            default:
+                                throw new NotSupportedException();
+                        }
+
                     }
 
                 }
-
             }
-        }
 
+        }
     }
 }
