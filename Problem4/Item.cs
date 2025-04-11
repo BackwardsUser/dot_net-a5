@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Problem4
-{
-    internal class Item
+{/// <summary>
+/// the item that is being auctioned
+/// </summary>
+    public class Item
     {
         public string Name { get; set; }
         public decimal startingPrice { get; set; }
@@ -16,6 +18,11 @@ namespace Problem4
 
         public double StartingPrice { get; set; }
 
+        /// <summary>
+        /// create the item to be autction
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="StartingPrice"></param>
         public Item( string name,  decimal StartingPrice)
         {
             Name = name;
