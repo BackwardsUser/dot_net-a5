@@ -21,8 +21,8 @@ namespace Problem4
         /// <summary>
         /// create the item to be autction
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="StartingPrice"></param>
+        /// <param name="name">name of item</param>
+        /// <param name="StartingPrice">starting price of item</param>
         public Item( string name,  decimal StartingPrice)
         {
             Name = name;
