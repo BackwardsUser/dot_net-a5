@@ -5,8 +5,13 @@
     /// </summary>
     internal class Auctioneer
     {
-
+        /// <summary>
+        /// list of bidder auctionobserver object
+        /// </summary>
         private List<AuctionObserver> bidders = new List<AuctionObserver>();
+        /// <summary>
+        /// current item being auction
+        /// </summary>
         private Item currentItem;
         /// <summary>
         /// create the aution with a empty list of observers

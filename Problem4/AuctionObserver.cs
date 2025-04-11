@@ -11,7 +11,13 @@ namespace Problem4
     /// </summary>
     public abstract class AuctionObserver
     {
+        /// <summary>
+        /// name of the actionObserver
+        /// </summary>
         public string Name { get; }
+        /// <summary>
+        /// max spending for the auctionObserver
+        /// </summary>
         public decimal maxSpending { get; set; }
         /// <summary>
         /// creates a auction observer
