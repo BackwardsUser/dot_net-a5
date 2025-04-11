@@ -9,6 +9,7 @@ namespace Problem1
 {
     /// <summary>
     /// Represents a toy car.
+    /// StAuth10068: I Sneha Philip, 000801922 certify that this material is my original work. No other person's work has been used without due acknowledgement. I have not made my work available to anyone else.
     /// </summary>
     public class Cars : Toys
     {
