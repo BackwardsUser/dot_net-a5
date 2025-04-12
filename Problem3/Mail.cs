@@ -8,5 +8,9 @@ namespace Problem3
 {
     public class Mail
     {
+        public Person Sender { get; set; }
+        public Person Reciever { get; set; }
+        public int Cost { get; set; }
+        public double weight { get; set; }
     }
 }
