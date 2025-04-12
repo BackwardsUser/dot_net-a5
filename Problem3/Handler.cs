@@ -23,6 +23,23 @@ namespace Problem3
         public IHandler Successor { get; set; }
     }
 
+    public class FlaggedHandler : Handler
+    {
+        public FlaggedHandler() { }
+        public FlaggedHandler(IHandler successor) : base(successor) { }
+        public override void HandleRequest(object request)
+        {
+            if (request is Mail mail && mail.IsFlagged)
+            {
+                Console.WriteLine("Mail is flagged! Placing it in the review queue.");
+            }
+            else
+            {
+                Successor.HandleRequest(request);
+            }
+        }
+    }
+
     public class MailHandler : Handler
     {
         public MailHandler() { }

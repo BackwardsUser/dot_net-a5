@@ -6,24 +6,29 @@ using System.Threading.Tasks;
 
 namespace Problem3
 {
-    internal class Worker
+    public class Worker
     {
-        public EventHandler Running;
-        public EventHandler Completed;
+        public EventHandler Running = delegate { };
+        public EventHandler Completed = delegate { };
 
-        private readonly Func<int, int, int> function;
+        private Mail? mail;
+        private readonly IHandler handler = new FlaggedHandler(new MailHandler(new DefaultHandler()));
 
-        public Worker(Func<int, int, int> function)
+        public Worker() { }
+
+        public void AssignMail(Mail _mail)
         {
-            this.Running?.Invoke(this, EventArgs.Empty);
-            this.function = function;
+            this.mail = _mail;
         }
 
-        public void DoWork(int value1, int value2)
+        public void DoWork()
         {
-            this.function(value1, value2);
-            Console.WriteLine("Doing Work...");
-
+            this.Running?.Invoke(this, EventArgs.Empty);
+            Console.WriteLine("[Worker] Processing mail...");
+            if (this.mail != null)
+            {
+                handler.HandleRequest(this.mail);
+            }
             this.Completed?.Invoke(this, EventArgs.Empty);
         }
     }

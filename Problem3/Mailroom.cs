@@ -11,37 +11,53 @@ namespace Problem3
         private static Mailroom instance;
         private Queue<Worker> availableInstances = new Queue<Worker>();
         private Queue<Worker> usedInstances = new Queue<Worker>();
-        private Queue<Worker> waitingInstances = new Queue<Worker>();
+        private Queue<Mail> waitingMail = new Queue<Mail>();
 
         private Mailroom()
         {
 
         }
 
+        public void RegisterWorker(Worker worker)
+        {
+            this.availableInstances.Enqueue(worker);
+        }
+
         public static Mailroom Instance => instance ?? (instance = new Mailroom());
 
-        public void QueueWorkItem(Func<int, int, int> function)
+        public void QueueWorkItem(Mail mail)
         {
             if (!this.availableInstances.Any())
             {
-                this.waitingInstances.Enqueue(new Worker(function));
+                Console.WriteLine("No available workers. Queuing mail...");
+                waitingMail.Enqueue(mail);
             }
             else
             {
-                var workingInstance = this.availableInstances.Dequeue();
+                var worker = availableInstances.Dequeue();
+                usedInstances.Enqueue(worker);
 
-                workingInstance.Running += (sender, args) =>
+                worker.AssignMail(mail);
+
+                worker.Running += (sender,args) => Console.WriteLine("Worker is running");
+                worker.Completed += (sender, args) =>
                 {
-                    Console.WriteLine("working is running");
+                    Console.WriteLine("Worker completed");
+                    if (!usedInstances.Any())
+                    {
+                        return;
+                    }
+                    usedInstances.Dequeue();
+                    availableInstances.Enqueue(worker);
+
+                    if (waitingMail.Any())
+                    {
+                        var nextMail = waitingMail.Dequeue();
+                        QueueWorkItem(nextMail);
+                    }
                 };
 
-                this.usedInstances.Enqueue(workingInstance);
-
-                workingInstance.Completed += (sender, args) =>
-                {
-                    var innerInstance = this.usedInstances.Dequeue();
-                    this.availableInstances.Enqueue(innerInstance);
-                };
+                worker.DoWork();
             }
         }
     }
