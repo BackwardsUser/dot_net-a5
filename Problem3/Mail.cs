@@ -12,5 +12,7 @@ namespace Problem3
         public Person Reciever { get; set; }
         public int Cost { get; set; }
         public double weight { get; set; }
+        public string Type { get; set; } // "Mail" or "Package"
+        public bool Flagged { get; set; }
     }
 }
